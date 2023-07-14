@@ -1,20 +1,14 @@
 # WPI Data Analysis
-The World Port Index contains the location and physical characteristics of, and the facilities
-and services offered by major ports and terminals worldwide. I migrated the World Port Index data from an old
-Access database to a modern relational database management system (PostgreSQL) and created data marts from analysis of the data.
+This repository provides code for an Extract-Load pipeline that migrates World Port Index data from an Access database to a modern RDBMS, PostgreSQL database.  Additionally, it includes Python scripts for analyzing the port data and generating data marts based on the analysis. The resulting data marts are then stored in tables within the PostgreSQL database.
 
-This repository contains code snippets for analyzing port data using a PostgreSQL database which include:
-- ### EL_pipeline.ipynb
-  This script migrates data from an Access database to a PostgreSQL database. It utilizes the `pyodbc` library to connect to the Access database, the `os` library, and the `psycopg2` library to connect to the PostgreSQL database.
+## Files
+-  `EL_pipeline.ipynb`: This script migrates data from an Access database to a PostgreSQL database. It utilizes the *pyodbc* library to connect to the Access database, the *os* library, and the *psycopg2* library to connect to the PostgreSQL database.
 
-- ### question1.ipynb
-  This script executes an SQL query that retrieves the nearest ports to Singapore's JURONG ISLAND port. It utilizes the `psycopg2` library to connect to the PostgreSQL database and the `os` library.
+-  `question1.ipynb`: This script executes an SQL query that retrieves the nearest ports to Singapore's JURONG ISLAND port. It utilizes the *psycopg2* library to connect to the PostgreSQL database and the *os* library.
   
-- ### question2.ipynb
-  This script executes an SQL query that determines the country with the largest number of ports with a cargo_wharf. It utilizes the `psycopg2` library to connect to the PostgreSQL database and the `os` library.
+-  `question2.ipynb`: This script executes an SQL query that determines the country with the largest number of ports with a cargo_wharf. It utilizes the *psycopg2* library to connect to the PostgreSQL database and the *os* library.
   
-- ### question3.ipynb
-  This script executes an SQL query that determines the nearest port with provisions, water, fuel oil, and diesel based on given coordinates. It utilizes the `psycopg2` library to connect to the PostgreSQL database and the `os` library.
+-  `question3.ipynb`: This script executes an SQL query that determines the nearest port with provisions, water, fuel oil, and diesel based on given coordinates. It utilizes the *psycopg2* library to connect to the PostgreSQL database and the *os* library.
   
 
 
@@ -22,7 +16,7 @@ This repository contains code snippets for analyzing port data using a PostgreSQ
 Before running the code, ensure that the following prerequisites are met:
 - Python 3.x is installed on your system.
 - PostgreSQL database server
-- Required packages(Python libraries: `pyodbc`, `psycopg2`) are installed. You can install them using pip.
+- Required packages(Python libraries: *pyodbc*, *psycopg2*) are installed. You can install them using pip.
 
 
 ## Instructions
@@ -53,7 +47,7 @@ To import data from the Access database to PostgreSQL, the code performs the fol
 To query the nearest ports based on given coordinates, the code performs the following steps:
 1. Connect to the PostgreSQL database (as described in the previous section).
 2. Execute an SQL query to calculate the distances between the given coordinates and all other ports.
-- Modify the SQL query if necessary to match the column names in your database.
+    - Modify the SQL query if necessary to match the column names in your database.
 3. Create a table in the PostgreSQL database to store the nearest ports.
 4. Retrieve the desired columns (port name and distance) from the result set and insert them into the nearest ports table.
 5. Commit the changes to the PostgreSQL database.
@@ -72,7 +66,7 @@ To find the nearest port with provisions, water, fuel oil, and diesel based on t
 1. Connect to the PostgreSQL database (as described in the previous section).
 2. Specify the latitude and longitude values.
 3. Execute an SQL query to find the nearest port with the required supplies.
-- Modify the SQL query if necessary to match the column names in your database.
+    - Modify the SQL query if necessary to match the column names in your database.
 4. Create a table in the PostgreSQL database to store the result.
 5. Retrieve the desired columns (country, port name, latitude, and longitude) from the result set and insert them into the table.
 6. Commit the changes to the PostgreSQL database.
@@ -80,7 +74,7 @@ To find the nearest port with provisions, water, fuel oil, and diesel based on t
   
 ### Notes
 
-The script assumes that the table in the Access database is named 'Wpi Data'. If your table has a different name, modify the access_query variable accordingly.
+The script assumes that the table in the Access database is named *Wpi Data*. If your table has a different name, modify the access_query variable accordingly.
 The script dynamically creates a table in the PostgreSQL database based on the column names and data types retrieved from the Access database. The data type mapping dictionary (data_type_mapping) is used to map Access data types to PostgreSQL data types. Adjust the dictionary if needed.
 Ensure that you have appropriate read and write permissions for both the Access and PostgreSQL databases.
 
